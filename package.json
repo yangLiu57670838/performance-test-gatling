@@ -1,0 +1,36 @@
+{
+  "name": "performance-test-gatling",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gatling (TypeScript) performance tests for multiple local and remote domains/endpoints",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "install-gatling": "gatling install",
+    "build": "gatling build --typescript",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,mjs,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,mjs,json,md}\"",
+    "clean": "rimraf target",
+    "mock": "node scripts/mock-server.mjs",
+    "recorder": "gatling recorder --typescript",
+    "test": "gatling run --typescript",
+    "test:endpoints": "gatling run --typescript --simulation endpoints",
+    "test:journey": "gatling run --typescript --simulation userJourney",
+    "test:renting:local-smoke": "gatling run --typescript --non-interactive --simulation rentingAppGraphqlLocalSmoke",
+    "test:renting:prod": "gatling run --typescript --non-interactive --simulation rentingAppGraphqlProd",
+    "test:smoke": "gatling run --typescript --non-interactive --simulation endpoints profile=smoke",
+    "test:local": "gatling run --typescript --non-interactive --simulation endpoints targets=local profile=smoke"
+  },
+  "dependencies": {
+    "@gatling.io/core": "3.16.1",
+    "@gatling.io/http": "3.16.1"
+  },
+  "devDependencies": {
+    "@gatling.io/cli": "3.16.1",
+    "prettier": "^3.9.9",
+    "rimraf": "^6.1.3",
+    "typescript": "^5.9.3"
+  }
+}
